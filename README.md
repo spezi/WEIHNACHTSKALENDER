@@ -14,7 +14,8 @@ The Kids gets daily theirs goodies in a little paper breadbag and if empty they 
 
 [FastLED Library](http://fastled.io/ "get FastLED Library") is needed
 
-If you be inspired or have only one children, feel free to fork .. 
+If you be inspired or you have only one children, change the Parameters to your needs and feel free to fork ;) 
+
 
 ![at 5. December] (https://raw.githubusercontent.com/spezi/WEIHNACHTSKALENDER/master/WEIHNACHTSKALENDER.JPG "at 5. December")
 
