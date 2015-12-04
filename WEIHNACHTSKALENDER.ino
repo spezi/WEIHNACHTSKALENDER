@@ -20,6 +20,9 @@ uint8_t green = 0;
 uint8_t mitte = NUM_LEDS/2;
 uint8_t counter = 0;
 
+// pixel index starts @ 0 
+uint8_t last_LED = NUM_LEDS - 1;
+
 
 #define UPDATES_PER_SECOND 30
 
@@ -46,14 +49,6 @@ void loop() {
   // put your main code here, to run repeatedly:
     static uint8_t startIndex = 0;
     startIndex = startIndex + 1; /* motion speed */
-    
-    
-      buttonState = digitalRead(buttonPin);
-    
-      if(buttonState == LOW){
-          counter++;
-          delay(1000);
-        }
 
     if (counter <= mitte) {
           // colorize all lights an let the pixel turn a bit more yellow day by day from both sides to the middle
@@ -70,23 +65,29 @@ void loop() {
     FastLED.show();
     FastLED.delay(1000 / UPDATES_PER_SECOND);
     
+      buttonState = digitalRead(buttonPin);
+
+      if(buttonState == LOW){
+          counter++;
+          delay(1000);
+        }
+    
 }
 
 void turnyello( uint8_t colorIndex)
 {
-    
     uint8_t brightness = 255;
 
     for( int i = 0; i < NUM_LEDS; i++) {
-
+            
+              leds[i] = CRGB( 255, green, 0);
+            
               if ( i < NUM_LEDS/2 ) {
                     green += 10;
                 } else {
                     green -= 10;
                   }
-              
-              leds[i] = CRGB( 255, green, 0);
-      
+                  
         colorIndex += 3;
     }
 }
@@ -94,8 +95,9 @@ void turnyello( uint8_t colorIndex)
 void makeblack()
 {
   for (int i=counter; i <= mitte; i++){
+      
       leds[i] = CRGB::Black;
-      leds[NUM_LEDS-i] = CRGB::Black;
+      leds[last_LED-i] = CRGB::Black;
     }
   }
 
