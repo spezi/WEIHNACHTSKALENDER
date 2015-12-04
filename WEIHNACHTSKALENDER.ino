@@ -56,7 +56,7 @@ void loop() {
         }
 
     if (counter <= mitte) {
-          // colorize all lights an let the pixel turn a bit more yellow day by day
+          // colorize all lights an let the pixel turn a bit more yellow day by day from both sides to the middle
            turnyello( startIndex);
           // mask pixel of the following days
            makeblack();
