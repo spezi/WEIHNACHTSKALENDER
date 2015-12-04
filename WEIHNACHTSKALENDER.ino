@@ -1,6 +1,4 @@
 #include <FastLED.h>
-#include <Button.h>
-
 
 //create a Button object at pin 12
 /*
@@ -8,11 +6,9 @@
 || GND -----/ ------ pin 12
 */
 const int buttonPin = 12;
-
-
-
 int buttonState = 0; 
 
+// FastLED Stuff
 #define LED_PIN     5
 #define NUM_LEDS    50
 #define BRIGHTNESS  200
@@ -20,13 +16,12 @@ int buttonState = 0;
 #define COLOR_ORDER RGB
 CRGB leds[NUM_LEDS];
 
-  uint8_t green = 0;
-
+uint8_t green = 0;
 uint8_t mitte = NUM_LEDS/2;
 uint8_t counter = 0;
 
 
-#define UPDATES_PER_SECOND 100
+#define UPDATES_PER_SECOND 30
 
 CRGBPalette16 currentPalette;
 TBlendType    currentBlending;
@@ -41,17 +36,15 @@ void setup() {
     
     currentPalette = RainbowColors_p;
     currentBlending = LINEARBLEND;
-
+    
+    // set pullup Resistor for the button
     pinMode(buttonPin,INPUT_PULLUP);
 }
 
 void loop() {
 
-             
-  currentBlending = LINEARBLEND;
-  
   // put your main code here, to run repeatedly:
-      static uint8_t startIndex = 0;
+    static uint8_t startIndex = 0;
     startIndex = startIndex + 1; /* motion speed */
     
     
@@ -60,35 +53,30 @@ void loop() {
       if(buttonState == LOW){
           counter++;
           delay(1000);
-        }else{
-          
-          }
+        }
 
-    
     if (counter <= mitte) {
-           goyello( startIndex);
+          // colorize all lights an let the pixel turn a bit more yellow day by day
+           turnyello( startIndex);
+          // mask pixel of the following days
            makeblack();
-           
-              if (counter == mitte) FillLEDsFromPaletteColors( startIndex); 
-        //counter++;
+          // Show Animation at Christmas Eve
+           if (counter == mitte) FillLEDsFromPaletteColors( startIndex); 
       } else {
-        counter = 0;
+          // back to beginning
+           counter = 0;
         }
         
-   
-
     FastLED.show();
     FastLED.delay(1000 / UPDATES_PER_SECOND);
     
-    
 }
 
-void goyello( uint8_t colorIndex)
+void turnyello( uint8_t colorIndex)
 {
-    uint8_t brightness = 255;
-  
-   
     
+    uint8_t brightness = 255;
+
     for( int i = 0; i < NUM_LEDS; i++) {
 
               if ( i < NUM_LEDS/2 ) {
@@ -96,7 +84,6 @@ void goyello( uint8_t colorIndex)
                 } else {
                     green -= 10;
                   }
-              
               
               leds[i] = CRGB( 255, green, 0);
       
@@ -106,15 +93,10 @@ void goyello( uint8_t colorIndex)
 
 void makeblack()
 {
-  
-
   for (int i=counter; i <= mitte; i++){
       leds[i] = CRGB::Black;
       leds[NUM_LEDS-i] = CRGB::Black;
     }
-  
-
-  
   }
 
 void FillLEDsFromPaletteColors( uint8_t colorIndex)
