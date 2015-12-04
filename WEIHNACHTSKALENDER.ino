@@ -76,16 +76,16 @@ void loop() {
 
 void turnyello( uint8_t colorIndex)
 {
-    uint8_t brightness = 255;
+    
 
     for( int i = 0; i < NUM_LEDS; i++) {
             
               leds[i] = CRGB( 255, green, 0);
             
               if ( i < NUM_LEDS/2 ) {
-                    green += 10;
+                    green += 6;
                 } else {
-                    green -= 10;
+                    green -= 6;
                   }
                   
         colorIndex += 3;
@@ -103,10 +103,10 @@ void makeblack()
 
 void FillLEDsFromPaletteColors( uint8_t colorIndex)
 {
-    uint8_t brightness = 255;
+   
     
     for( int i = 0; i < NUM_LEDS; i++) {
-        leds[i] = ColorFromPalette( currentPalette, colorIndex, brightness, currentBlending);
+        leds[i] = ColorFromPalette( currentPalette, colorIndex, BRIGHTNESS, currentBlending);
         colorIndex += 3;
     }
 }
