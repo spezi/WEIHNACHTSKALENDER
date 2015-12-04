@@ -8,6 +8,7 @@ The Kids get every day the goodies in a little paper breadbag and if it empty th
 
 * Arduino Board
 * I use this [String of 12mm WS2811 Pixel](http://www.aliexpress.com/item/AAA-12mm-WS2811-led-pixel-module-IP68-waterproof-DC5V-full-color-RGB-string-christmas-LED-light/1022672558.html "bought at aliexpress")
+* some paper breadbags like [this](http://www.amazon.de/Papierfaltenbeutel-Cellulose-gef%C3%A4delt-24x10x5cm-weiss/dp/B003OOJMI0/ref=sr_1_1/276-4203939-8001601?ie=UTF8&qid=1449249971&sr=8-1&keywords=brotbeutel+papier)
 
 ## Software
 
